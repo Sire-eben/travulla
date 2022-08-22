@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:travulla/cubit/app_cubits.dart';
 import 'package:travulla/misc/colors.dart';
 import 'package:travulla/pages/navigation_pages/main_page/main_page.dart';
 import 'package:travulla/widgets/large_text.dart';
@@ -65,12 +67,15 @@ class _WelcomePageState extends State<WelcomePage> {
                           ),
                           ResponsiveButton(
                             width: 100,
-                            action: pageIndex == 2
-                                ? () => Navigator.push(
-                                    context,
-                                    CupertinoPageRoute(
-                                        builder: (_) => const MainPage()))
-                                : () => null,
+                            action: () =>
+                                BlocProvider.of<AppCubits>(context).getData(),
+
+                            // pageIndex == 2
+                            //     ? () => Navigator.push(
+                            //         context,
+                            //         CupertinoPageRoute(
+                            //             builder: (_) => const MainPage()))
+                            //     : null,
                           )
                         ],
                       ),

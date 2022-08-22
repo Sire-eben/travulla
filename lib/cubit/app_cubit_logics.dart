@@ -16,10 +16,17 @@ class _AppCubitLogicsState extends State<AppCubitLogics> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocBuilder<AppCubits, CubitStates>(builder: (context, state) {
-        if (State is WelcomeState) {
-          return WelcomePage();
-        } else {
+        if (State is InitialState) {
           return Container();
+        }
+        if (State is LoadingState) {
+          return const Center(
+            child: CircularProgressIndicator(
+              color: Colors.black,
+            ),
+          );
+        } else {
+          return WelcomePage();
         }
       }),
     );
